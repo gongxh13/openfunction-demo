@@ -1,0 +1,17 @@
+apiVersion: core.openfunction.io/v1beta1
+kind: Function
+metadata:
+  name: function-java-hello-world
+spec:
+  version: "v2.0.0"
+  image: "gongxh/function-java-hello-world:latest"
+  imageCredentials:
+    name: push-secret
+  port: 8080 # default to 8080
+  serving:
+    template:
+      containers:
+        - name: function # DO NOT change this
+          # imagePullPolicy: IfNotPresent
+          imagePullPolicy: Never 
+    runtime: "knative"

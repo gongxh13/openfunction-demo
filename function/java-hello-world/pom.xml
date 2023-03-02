@@ -14,10 +14,9 @@
   <dependencies>
     <!-- Required for Function primitives -->
     <dependency>
-      <groupId>com.google.cloud.functions</groupId>
+      <groupId>dev.openfunction.functions</groupId>
       <artifactId>functions-framework-api</artifactId>
-      <version>1.0.4</version>
-      <scope>provided</scope>
+      <version>1.0.0</version>
     </dependency>
   </dependencies>
 

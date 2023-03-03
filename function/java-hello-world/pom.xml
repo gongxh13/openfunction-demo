@@ -19,24 +19,4 @@
       <version>1.0.0</version>
     </dependency>
   </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <!--
-          Google Cloud Functions Framework Maven plugin
-          This plugin allows you to run Cloud Functions Java code
-          locally. Use the following terminal command to run a
-          given function locally:
-          mvn function:run -Drun.functionTarget=your.package.yourFunction
-        -->
-        <groupId>com.google.cloud.functions</groupId>
-        <artifactId>function-maven-plugin</artifactId>
-        <version>0.9.7</version>
-        <configuration>
-          <functionTarget>com.openfunction.HelloWorld</functionTarget>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 </project>

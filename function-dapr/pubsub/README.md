@@ -40,6 +40,7 @@ IMAGE_TAG=${IMAGE_REPOSITORY}${IAMGE_NAME}:${IMAGE_VERSION}
 ```shell
 cd subscriber
 pack build ${IMAGE_TAG} --trust-builder --path ./ --builder openfunction/builder-go:v2.4.0 --env FUNC_NAME="Subscriber"  --env FUNC_CLEAR_SOURCE=true
+docker push ${IMAGE_TAG}
 ```
 
 #### Deploy the subscriber:

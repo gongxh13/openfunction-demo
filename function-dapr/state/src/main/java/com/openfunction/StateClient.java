@@ -30,7 +30,9 @@ public class StateClient implements HttpFunction {
 
             // delete state API
             try {
-                client.deleteState(STATE_STORE_NAME, FIRST_KEY_NAME, "100", null).block();
+                System.out.println("Trying to delete again with correct etag.");
+                String storedEtag = client.getState(STATE_STORE_NAME, FIRST_KEY_NAME, MyClass.class).block().getEtag();
+                client.deleteState(STATE_STORE_NAME, FIRST_KEY_NAME, storedEtag, null).block();
             } catch (DaprException ex) {
                 if (ex.getErrorCode().equals(Status.Code.ABORTED.toString())) {
                     // Expected error due to etag mismatch.

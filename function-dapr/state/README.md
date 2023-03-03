@@ -14,7 +14,7 @@ pack build ${IMAGE_TAG} --trust-builder --path ./ --builder openfunction/builder
 1. Follow [these steps](https://docs.dapr.io/getting-started/tutorials/configure-state-pubsub/#step-1-create-a-redis-store) to create a Redis store.
 2. Apply the redis.yaml file and observe that your state store was successfully configured!
 ```
-kubectl apply -f ./deploy/redis.yaml
+kubectl apply -f redis.yaml
 ```
 3. Deploy application
 ```

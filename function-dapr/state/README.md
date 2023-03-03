@@ -24,5 +24,5 @@ kubectl run curl --rm --image=radial/busyboxplus:curl -i --tty
 ```
 ## Access the function via URL
 ```
-curl http://function-java-hello-world.default.svc.cluster.local/test
+curl http://function-dapr-state.default.svc.cluster.local/test
 ```

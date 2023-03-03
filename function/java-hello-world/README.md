@@ -11,8 +11,7 @@ pack build ${IMAGE_TAG} --trust-builder --path ./ --builder openfunction/builder
 ```
 # Deployment
 ```
-kubectl create ns function-hello
-kubectl apply -f deploy.yaml -n function-hello
+kubectl apply -f deploy.yaml
 ```
 # Access function
 ## You can observe the process of a function with the following command:

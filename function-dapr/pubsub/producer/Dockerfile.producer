@@ -7,6 +7,7 @@ WORKDIR /app
 
 ADD . /app
 RUN go mod download
+RUN go mod tidy -e
 
 RUN GOOS=linux CGO_ENABLED=0 GOARCH=amd64 go build -o /app/producer ./producer.go
 

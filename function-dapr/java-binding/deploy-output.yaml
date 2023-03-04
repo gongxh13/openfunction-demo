@@ -1,0 +1,44 @@
+apiVersion: core.openfunction.io/v1beta1
+kind: Function
+metadata:
+  name: function-output
+  annotations:
+    plugins: |
+      pre:
+      - dev.openfunction.samples.plugins.ExamplePlugin
+      post:
+      - dev.openfunction.samples.plugins.ExamplePlugin
+spec:
+  version: "v1.0.0"
+  image: "gongxh/function-dapr-java-binding-output:latest"
+  imageCredentials:
+    name: push-secret
+  port: 8080 # default to 8080
+  serving:
+    scaleOptions:
+      minReplicas: 0
+      maxReplicas: 5
+    runtime: knative
+    outputs:
+      - name: target
+        component: kafka-server
+        operation: "create"
+    bindings:
+      kafka-server:
+        type: bindings.kafka
+        version: v1
+        metadata:
+          - name: brokers
+            value: "kafka-openfunction-demo-kafka-brokers:9092"
+          - name: authRequired
+            value: "false"
+          - name: publishTopic
+            value: "function-dapr-java-binding-topic"
+          - name: topics
+            value: "function-dapr-java-binding-topic"
+          - name: consumerGroup
+            value: "function-output"
+    template:
+      containers:
+        - name: function # DO NOT change this
+          imagePullPolicy: IfNotPresent 

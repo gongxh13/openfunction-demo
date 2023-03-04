@@ -1,0 +1,66 @@
+apiVersion: core.openfunction.io/v1beta1
+kind: Function
+metadata:
+  name: function-input
+  annotations:
+    plugins: |
+      pre:
+      - dev.openfunction.samples.plugins.ExamplePlugin
+      post:
+      - dev.openfunction.samples.plugins.ExamplePlugin
+spec:
+  version: "v1.0.0"
+  image: gongxh/function-dapr-java-binding-input:latest
+  imageCredentials:
+    name: push-secret
+  serving:
+    runtime: async
+    scaleOptions:
+      minReplicas: 0
+      maxReplicas: 10
+      keda:
+        scaledObject:
+          pollingInterval: 15
+          minReplicaCount: 0
+          maxReplicaCount: 10
+          cooldownPeriod: 60
+          advanced:
+            horizontalPodAutoscalerConfig:
+              behavior:
+                scaleDown:
+                  stabilizationWindowSeconds: 45
+                  policies:
+                    - type: Percent
+                      value: 50
+                      periodSeconds: 15
+                scaleUp:
+                  stabilizationWindowSeconds: 0
+    triggers:
+      - type: kafka
+        metadata:
+          topic: function-dapr-java-binding-topic
+          bootstrapServers: kafka-server-kafka-brokers.default.svc:9092
+          consumerGroup: function-input
+          lagThreshold: "20"
+    inputs:
+      - name: input
+        component: target-input
+    bindings:
+      target-input:
+        type: bindings.kafka
+        version: v1
+        metadata:
+          - name: brokers
+            value: "kafka-openfunction-demo-kafka-brokers:9092"
+          - name: topics
+            value: "function-dapr-java-binding-topic"
+          - name: consumerGroup
+            value: "function-input"
+          - name: publishTopic
+            value: "function-dapr-java-binding-topic"
+          - name: authRequired
+            value: "false"
+    template:
+      containers:
+        - name: function # DO NOT change this
+          imagePullPolicy: IfNotPresent 

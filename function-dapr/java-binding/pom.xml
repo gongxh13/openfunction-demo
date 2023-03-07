@@ -11,6 +11,20 @@
     <maven.compiler.source>11</maven.compiler.source>
   </properties>
 
+  <repositories>
+      <repository>
+          <id>snapshots</id>
+          <name>Maven snapshots</name>
+          <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+          <releases>
+              <enabled>false</enabled>
+          </releases>
+          <snapshots>
+              <enabled>true</enabled>
+          </snapshots>
+      </repository>
+  </repositories>
+
   <dependencies>
     <!-- Required for Function primitives -->
     <dependency>

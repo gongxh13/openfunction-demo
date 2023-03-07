@@ -33,3 +33,12 @@ kubectl run curl --rm --image=radial/busyboxplus:curl -i --tty
 ```
 curl http://function-dapr-state.default.svc.cluster.local/test
 ```
+
+## See state function log
+```
+kubectl logs -f \
+  $(kubectl get po -l \
+  openfunction.io/serving=$(kubectl get functions function-dapr-state -o jsonpath='{.status.serving.resourceRef}') \
+  -o jsonpath='{.items[0].metadata.name}') \
+  function
+```

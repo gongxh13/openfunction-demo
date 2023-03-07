@@ -4,7 +4,7 @@ metadata:
   name: function-java-hello-world
 spec:
   version: "v2.0.0"
-  image: "gongxh/function-java-hello-world:latest"
+  image: "gongxh/function-java-hello-world@sha256:b1e4c113c890233b322dfb81c2eb56f0d53e7f4dbccf7d58fb3b8482588ff334"
   imageCredentials:
     name: push-secret
   port: 8080 # default to 8080

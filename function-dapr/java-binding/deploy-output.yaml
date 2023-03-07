@@ -10,7 +10,7 @@ metadata:
       - dev.openfunction.samples.plugins.ExamplePlugin
 spec:
   version: "v1.0.0"
-  image: "gongxh/function-dapr-java-binding-output@sha256:525985134aae8bbd71d58c6cf4347af50397872a43c066da9e7412b34338dd0d"
+  image: "gongxh/function-dapr-java-binding-output@sha256:f259a8a149e7d349267371d76aece7999460e44cd1790232b82d52b1bcb692e1"
   imageCredentials:
     name: push-secret
   port: 8080 # default to 8080

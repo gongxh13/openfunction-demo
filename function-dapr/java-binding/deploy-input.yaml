@@ -10,7 +10,7 @@ metadata:
       - dev.openfunction.samples.plugins.ExamplePlugin
 spec:
   version: "v1.0.0"
-  image: gongxh/function-dapr-java-binding-input@sha256:e14a40448c8cda3fb11f8b5d765a2ef93667f39fd4ab2ddf31274815bffeebe3
+  image: gongxh/function-dapr-java-binding-input@sha256:3d087cdbc5131557555ef22a450618e4bc0560a1dfac3522b5103d5b34ac88b8
   imageCredentials:
     name: push-secret
   serving:

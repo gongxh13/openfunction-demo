@@ -2,6 +2,9 @@
 In this case, we will create two functions: function-input and function-output. function-output will send the content to the kafka after a HTTP request received. The function-input will watch the kafka and consume it. Two function will has same java code.
 ## Prerequirment
 Follow [this guide](https://github.com/OpenFunction/samples/blob/release-0.6/Prerequisites.md#kafka) to install a Kafka server named kafka-openfunction-demo and a Topic named function-dapr-java-binding-topic.
+```
+kubectl apply -f deploy-kafka.yaml
+```
 
 ## Build
 ### Build function-output

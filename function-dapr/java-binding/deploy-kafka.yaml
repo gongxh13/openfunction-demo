@@ -1,8 +1,7 @@
-cat <<EOF | kubectl apply -f -
 apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
-  name: <kafka-server>
+  name: kafka-openfunction-demo
   namespace: default
 spec:
   kafka:
@@ -36,10 +35,10 @@ spec:
 apiVersion: kafka.strimzi.io/v1beta1
 kind: KafkaTopic
 metadata:
-  name: <kafka-topic>
+  name: function-dapr-java-binding-topic
   namespace: default
   labels:
-    strimzi.io/cluster: <kafka-server>
+    strimzi.io/cluster: kafka-openfunction-demo
 spec:
   partitions: 10
   replicas: 1

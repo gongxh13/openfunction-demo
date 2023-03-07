@@ -4,7 +4,7 @@ metadata:
   name: function-dapr-state
 spec:
   version: "v2.0.0"
-  image: "gongxh/function-dapr-state:latest"
+  image: "gongxh/function-dapr-state@sha256:9acc278d4ff3fc840ef24e765fa7e288c3ba203cbb3f766d7ea3214a1984604f"
   imageCredentials:
     name: push-secret
   port: 8080 # default to 8080

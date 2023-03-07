@@ -5,8 +5,6 @@ Refer to [official example link](https://github.com/openFunction/samples/tree/re
 ## Prerequisites
 ### Has a kubernete cluster
 ### [Install OpenFunction](https://openfunction.dev/docs/getting-started/installation/#install-openfunction)
-### install Kafka
-Follow [this guide](https://github.com/OpenFunction/samples/blob/release-0.6/Prerequisites.md#kafka) to install a Kafka server named kafka-logs-receiver and a Topic named logs.
 ### Registry Credential
 Follow [this guide](https://github.com/OpenFunction/samples/blob/release-0.6/Prerequisites.md#registry-credential) to create a registry credential.
 ### install pack

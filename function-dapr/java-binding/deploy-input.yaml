@@ -39,7 +39,7 @@ spec:
       - type: kafka
         metadata:
           topic: function-dapr-java-binding-topic
-          bootstrapServers: kafka-server-kafka-brokers.default.svc:9092
+          bootstrapServers: kafka-openfunction-demo-kafka-brokers.default.svc:9092
           consumerGroup: function-input
           lagThreshold: "20"
     inputs:

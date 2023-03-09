@@ -16,6 +16,10 @@
         {
             this.logger = loggerFactory.CreateLogger<ProcessPaymentActivity>();
             this.client = client;
+            this.logger.LogInformation(
+                "ProcessPaymentActivity create, Dapr client is {}", daprClient
+                );
+            
         }
 
         public override async Task<object> RunAsync(WorkflowActivityContext context, PaymentRequest req)

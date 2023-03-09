@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workflow-order-processor
+  labels:
+    app: workflow-order-processor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: workflow-order-processor
+  template:
+    metadata:
+      labels:
+        app: workflow-order-processor
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "workflow-order-processor"
+        dapr.io/enable-api-logging: "true"
+    spec:
+      containers:
+        - name: dapr-workflow-order-processor
+          image: gongxh/dapr-workflow-order-processor@sha256:1cabb1fb38baabf098b2b4eee8880d9f1a978df919a9a55f28e58639aaea6d93

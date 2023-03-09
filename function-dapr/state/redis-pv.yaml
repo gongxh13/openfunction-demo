@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: redis-data-redis-cluster-master-0
+  name: redis-data-redis-master-0
 spec:
   storageClassName: manual
   capacity:
@@ -9,12 +9,26 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: /mnt/redis-cluster-master-0
+    path: /mnt/redis-master-0
+---
+apiVersion: v1
+kind: PersistentVolume
+
+metadata:
+  name: redis-data-redis-replicas-0
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/redis-replicas-0
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: redis-data-redis-cluster-slave-0
+  name: redis-data-redis-replicas-1
 spec:
   storageClassName: manual
   capacity:
@@ -22,12 +36,12 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: /mnt/redis-cluster-slave-0
+    path: /mnt/redis-replicas-1
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: redis-data-redis-cluster-slave-1
+  name: redis-data-redis-replicas-2
 spec:
   storageClassName: manual
   capacity:
@@ -35,17 +49,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: /mnt/redis-cluster-slave-1
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: redis-data-redis-cluster-slave-2
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 8Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: /mnt/redis-cluster-slave-2
+    path: /mnt/redis-replicas-2

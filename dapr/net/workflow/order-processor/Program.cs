@@ -31,7 +31,6 @@ using var host = builder.Build();
 host.Start();
 
 using var daprClient = new DaprClientBuilder().Build();
-Console.WriteLine("Dapr client is {}", daprClient.ToString());
 
 // NOTE: WorkflowEngineClient will be replaced with a richer version of DaprClient
 //       in a subsequent SDK release. This is a temporary workaround.

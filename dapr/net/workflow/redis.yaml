@@ -17,5 +17,7 @@ spec:
     secretKeyRef:
       name: redis
       key: redis-password
+  - name: actorStateStore  # Optional. default: false
+    value : true
 auth:
   secretStore: kubernetes

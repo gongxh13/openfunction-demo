@@ -2,6 +2,15 @@
 This is change from [official demo](https://github.com/dapr/quickstarts/tree/master/workflows/csharp/sdk) to k8s environment.
 
 You can see in ./order-processor/ Dockerfile.
+## Prerequeirement
+deploy redis in clusters.
+```
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo update
+helm install redis bitnami/redis --set image.tag=6.2
+```
+Apply the redis.yaml file and observe that your state store was successfully configured!
+kubectl apply -f redis.yaml
 
 ## Build and push image
 Build and push the workflow order-processor image.

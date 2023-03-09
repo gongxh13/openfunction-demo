@@ -20,4 +20,4 @@ spec:
     spec:
       containers:
         - name: dapr-workflow-order-processor
-          image: gongxh/dapr-workflow-order-processor@sha256:33dfa1b4b4ae08538c95706d514289ef27aaf47d4a0f67bcc41fcdbad90ecfba
+          image: gongxh/dapr-workflow-order-processor@sha256:2a3b73a6adf43a8031659bb62d0dadfa41d64f6cce3746bdf96b43ca58c68150

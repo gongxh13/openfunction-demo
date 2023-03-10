@@ -77,8 +77,8 @@ while (true)
 {
     // Get the name of the item to order and make sure we have inventory
     string items = string.Join(", ", baseInventory.Select(i => i.Name));
-    Console.WriteLine($"Enter the name of one of the following items to order [{items}].");
-    Console.WriteLine("To restock items, type 'restock'.");
+    // Console.WriteLine($"Enter the name of one of the following items to order [{items}].");
+    // Console.WriteLine("To restock items, type 'restock'.");
     string itemName = Console.ReadLine()?.Trim();
     if (string.IsNullOrEmpty(itemName))
     {

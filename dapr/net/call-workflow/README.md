@@ -46,7 +46,7 @@ kubectl apply -f workflow.yaml
 kubectl run curl --rm --image=radial/busyboxplus:curl -i --tty
 ```
 ### call start workflow
-note where `1234` is you start workflow instance id, please replace it
+Make note of the "1234" in the commands below. This represents the unique identifier for the workflow run and can be replaced with any identifier of your choosing.
 ```
 curl -i -X POST http://localhost:3500/v1.0-alpha1/workflows/dapr-workflow/OrderProcessingWorkflow/1234/start \
   -H "Content-Type: application/json" \

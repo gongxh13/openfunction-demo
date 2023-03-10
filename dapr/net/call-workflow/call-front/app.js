@@ -81,6 +81,9 @@ app.post('/trigger', async (req, res) => {
                 let resultText = await response.text();
                 console.log(resultText);
                 res.status(200).send(resultText);
+            } catch (e) {
+                console.error(e);
+                res.status(500).send(e);
             }
         }
     } catch (e) {

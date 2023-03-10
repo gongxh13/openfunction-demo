@@ -20,58 +20,64 @@ app.get('/ports', (_req, res) => {
 });
 
 app.post('/trigger', async (req, res) => {
-    const data = req.body;
-    const wrokflowType = data.wrokflowType;
-    const instanceId = data.instanceId;
-    const type = data.type;
-    const inputData = data.inputData;
-    let response;
-    switch (type) {
-        case "start":
-            response = await fetch(`${workflowurl}/${wrokflowType}/${instanceId}/start`, {
-                method: "POST",
-                body: JSON.stringify(inputData),
-                headers: {
-                    "Content-Type": "application/json"
+    try {
+        const data = req.body;
+        const wrokflowType = data.wrokflowType;
+        const instanceId = data.instanceId;
+        const type = data.type;
+        const inputData = data.inputData;
+        let response;
+        switch (type) {
+            case "start":
+                response = await fetch(`${workflowurl}/${wrokflowType}/${instanceId}/start`, {
+                    method: "POST",
+                    body: JSON.stringify(inputData),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+                if (!response.ok) {
+                    throw "Failed to start workflow.";
                 }
-            });
-            if (!response.ok) {
-                throw "Failed to start workflow.";
-            }
-            console.log("Successfully start workflow " + instanceId);
-            break;
-        case "terminate":
-            response = await fetch(`${workflowurl}/${wrokflowType}/${instanceId}/terminate`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
+                console.log("Successfully start workflow " + instanceId);
+                break;
+            case "terminate":
+                response = await fetch(`${workflowurl}/${wrokflowType}/${instanceId}/terminate`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+                if (!response.ok) {
+                    throw "Failed to stop workflow.";
                 }
-            });
-            if (!response.ok) {
-                throw "Failed to stop workflow.";
-            }
-            console.log("Successfully stop workflow " + instanceId);
-            break;
-        case "status":
-            response = await fetch(`${workflowurl}/${wrokflowType}/${instanceId}`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
+                console.log("Successfully stop workflow " + instanceId);
+                break;
+            case "status":
+                response = await fetch(`${workflowurl}/${wrokflowType}/${instanceId}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+                if (!response.ok) {
+                    throw "Failed to get workflow status.";
                 }
-            });
-            if (!response.ok) {
-                throw "Failed to get workflow status.";
-            }
-            console.log("Successfully get workflow " + instanceId);
-            break;
-        default:
-            console.log("Not support call type " + type);
-            break;
+                console.log("Successfully get workflow " + instanceId);
+                break;
+            default:
+                console.log("Not support call type " + type);
+                break;
+        }
+        let resultJson = await response.json();
+        console.log(resultJson);
+        res.status(200).send(resultJson);
+    } catch (e) {
+        console.error(e);
+        res.status(500).send(e);
+    } finally {
     }
-    console.log(response);
-    let resultJson = await response.json();
-    console.log(resultJson);
-    res.status(200).send(resultJson);
+
 })
 
 app.listen(port, () => console.log(`Node App listening on port ${port}!`));

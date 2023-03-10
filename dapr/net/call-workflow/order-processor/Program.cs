@@ -73,98 +73,98 @@ var baseInventory = new List<InventoryItem>
 await RestockInventory(daprClient, baseInventory);
 
 // Start the input loop
-while (true)
-{
-    // Get the name of the item to order and make sure we have inventory
-    string items = string.Join(", ", baseInventory.Select(i => i.Name));
-    // Console.WriteLine($"Enter the name of one of the following items to order [{items}].");
-    // Console.WriteLine("To restock items, type 'restock'.");
-    string itemName = Console.ReadLine()?.Trim();
-    if (string.IsNullOrEmpty(itemName))
-    {
-        continue;
-    }
-    else if (string.Equals("restock", itemName, StringComparison.OrdinalIgnoreCase))
-    {
-        await RestockInventory(daprClient, baseInventory);
-        continue;
-    }
+// while (true)
+// {
+//     // Get the name of the item to order and make sure we have inventory
+//     string items = string.Join(", ", baseInventory.Select(i => i.Name));
+//     // Console.WriteLine($"Enter the name of one of the following items to order [{items}].");
+//     // Console.WriteLine("To restock items, type 'restock'.");
+//     string itemName = Console.ReadLine()?.Trim();
+//     if (string.IsNullOrEmpty(itemName))
+//     {
+//         continue;
+//     }
+//     else if (string.Equals("restock", itemName, StringComparison.OrdinalIgnoreCase))
+//     {
+//         await RestockInventory(daprClient, baseInventory);
+//         continue;
+//     }
 
-    InventoryItem item = baseInventory.FirstOrDefault(item => string.Equals(item.Name, itemName, StringComparison.OrdinalIgnoreCase));
-    if (item == null)
-    {
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine($"We don't have {itemName}!");
-        Console.ResetColor();
-        continue;
-    }
+//     InventoryItem item = baseInventory.FirstOrDefault(item => string.Equals(item.Name, itemName, StringComparison.OrdinalIgnoreCase));
+//     if (item == null)
+//     {
+//         Console.ForegroundColor = ConsoleColor.Yellow;
+//         Console.WriteLine($"We don't have {itemName}!");
+//         Console.ResetColor();
+//         continue;
+//     }
 
-    Console.WriteLine($"How many {itemName} would you like to purchase?");
-    string amountStr = Console.ReadLine().Trim();
-    if (!int.TryParse(amountStr, out int amount) || amount <= 0)
-    {
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine($"Invalid input. Assuming you meant to type '1'.");
-        Console.ResetColor();
-        amount = 1;
-    }
+//     Console.WriteLine($"How many {itemName} would you like to purchase?");
+//     string amountStr = Console.ReadLine().Trim();
+//     if (!int.TryParse(amountStr, out int amount) || amount <= 0)
+//     {
+//         Console.ForegroundColor = ConsoleColor.Yellow;
+//         Console.WriteLine($"Invalid input. Assuming you meant to type '1'.");
+//         Console.ResetColor();
+//         amount = 1;
+//     }
 
-    // Construct the order with a unique order ID
-    string orderId = $"{itemName.ToLowerInvariant()}-{Guid.NewGuid().ToString()[..8]}";
-    double totalCost = amount * item.PerItemCost;
-    var orderInfo = new OrderPayload(itemName.ToLowerInvariant(), totalCost, amount);
+//     // Construct the order with a unique order ID
+//     string orderId = $"{itemName.ToLowerInvariant()}-{Guid.NewGuid().ToString()[..8]}";
+//     double totalCost = amount * item.PerItemCost;
+//     var orderInfo = new OrderPayload(itemName.ToLowerInvariant(), totalCost, amount);
 
-    // Start the workflow using the order ID as the workflow ID
-    Console.WriteLine($"Starting order workflow '{orderId}' purchasing {amount} {itemName}");
-    await workflowClient.ScheduleNewWorkflowAsync(
-        name: nameof(OrderProcessingWorkflow),
-        instanceId: orderId,
-        input: orderInfo);
+//     // Start the workflow using the order ID as the workflow ID
+//     Console.WriteLine($"Starting order workflow '{orderId}' purchasing {amount} {itemName}");
+//     await workflowClient.ScheduleNewWorkflowAsync(
+//         name: nameof(OrderProcessingWorkflow),
+//         instanceId: orderId,
+//         input: orderInfo);
 
-    // Wait for the workflow to complete
-    WorkflowState state = await workflowClient.GetWorkflowStateAsync(
-        instanceId: orderId,
-        getInputsAndOutputs: true);
-    while (!state.IsWorkflowCompleted)
-    {
-        Thread.Sleep(TimeSpan.FromSeconds(1));
-        state = await workflowClient.GetWorkflowStateAsync(
-            instanceId: orderId,
-            getInputsAndOutputs: true);
-    }
+//     // Wait for the workflow to complete
+//     WorkflowState state = await workflowClient.GetWorkflowStateAsync(
+//         instanceId: orderId,
+//         getInputsAndOutputs: true);
+//     while (!state.IsWorkflowCompleted)
+//     {
+//         Thread.Sleep(TimeSpan.FromSeconds(1));
+//         state = await workflowClient.GetWorkflowStateAsync(
+//             instanceId: orderId,
+//             getInputsAndOutputs: true);
+//     }
 
-    if (state.RuntimeStatus == WorkflowRuntimeStatus.Completed)
-    {
-        OrderResult result = state.ReadOutputAs<OrderResult>();
-        if (result.Processed)
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Order workflow is {state.RuntimeStatus} and the order was processed successfully.");
-            Console.ResetColor();
-        }
-        else
-        {
-            Console.WriteLine($"Order workflow is {state.RuntimeStatus} but the order was not processed.");
-        }
-    }
-    else if (state.RuntimeStatus == WorkflowRuntimeStatus.Failed)
-    {
-        // WorkflowEngineClient doesn't expose a way to get error information.
-        // For that, we resort to DaprClient. The experience will be improved in the next release.
-        GetWorkflowResponse response = await daprClient.GetWorkflowAsync(
-            instanceId: orderId,
-            workflowComponent: "dapr",
-            workflowName: nameof(OrderProcessingWorkflow),
-            CancellationToken.None);
+//     if (state.RuntimeStatus == WorkflowRuntimeStatus.Completed)
+//     {
+//         OrderResult result = state.ReadOutputAs<OrderResult>();
+//         if (result.Processed)
+//         {
+//             Console.ForegroundColor = ConsoleColor.Green;
+//             Console.WriteLine($"Order workflow is {state.RuntimeStatus} and the order was processed successfully.");
+//             Console.ResetColor();
+//         }
+//         else
+//         {
+//             Console.WriteLine($"Order workflow is {state.RuntimeStatus} but the order was not processed.");
+//         }
+//     }
+//     else if (state.RuntimeStatus == WorkflowRuntimeStatus.Failed)
+//     {
+//         // WorkflowEngineClient doesn't expose a way to get error information.
+//         // For that, we resort to DaprClient. The experience will be improved in the next release.
+//         GetWorkflowResponse response = await daprClient.GetWorkflowAsync(
+//             instanceId: orderId,
+//             workflowComponent: "dapr",
+//             workflowName: nameof(OrderProcessingWorkflow),
+//             CancellationToken.None);
             
-        string failureDetails = await GetWorkflowFailureDetails(daprClient, orderId);
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine($"The workflow failed - {failureDetails}");
-        Console.ResetColor();
-    }
+//         string failureDetails = await GetWorkflowFailureDetails(daprClient, orderId);
+//         Console.ForegroundColor = ConsoleColor.Red;
+//         Console.WriteLine($"The workflow failed - {failureDetails}");
+//         Console.ResetColor();
+//     }
 
-    Console.WriteLine();
-}
+//     Console.WriteLine();
+// }
 
 static async Task RestockInventory(DaprClient daprClient, List<InventoryItem> inventory)
 {

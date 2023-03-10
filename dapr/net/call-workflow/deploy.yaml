@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: call-workflow-order-processor
+  labels:
+    app: call-workflow-order-processor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: call-workflow-order-processor
+  template:
+    metadata:
+      labels:
+        app: call-workflow-order-processor
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "call-workflow-order-processor"
+        dapr.io/enable-api-logging: "true"
+    spec:
+      containers:
+        - name: dapr-workflow-order-processor
+          image: gongxh/dapr-call-workflow-order-processor@sha256:33dfa1b4b4ae08538c95706d514289ef27aaf47d4a0f67bcc41fcdbad90ecfba
+          env:
+            - name: WORKFLOW_NAME
+              value: "dapr-workflow"

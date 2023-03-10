@@ -1,0 +1,10 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: dapr-workflow
+spec:
+  type: workflow.OrderProcessingWorkflow
+  version: v1.0-alpha1
+  # metadata:
+  # - name: <NAME>
+  #   value: <VALUE>

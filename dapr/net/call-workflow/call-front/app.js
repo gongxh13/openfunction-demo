@@ -26,6 +26,7 @@ app.post('/trigger', async (req, res) => {
         const instanceId = data.instanceId;
         const type = data.type;
         const inputData = data.inputData;
+        const daprAppId = data.daprAppId;
         let response;
         switch (type) {
             case "start":
@@ -46,7 +47,8 @@ app.post('/trigger', async (req, res) => {
                 response = await fetch(`${workflowurl}/${wrokflowType}/${instanceId}/terminate`, {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        "dapr-app-id": daprAppId
                     }
                 });
                 if (!response.ok) {

@@ -88,5 +88,5 @@ curl -i -X POST http://localhost:8080/trigger \
 ```
 curl -i -X POST http://localhost:8080/trigger \
   -H "Content-Type: application/json" \
-  -d '{"wrokflowType": "OrderProcessingWorkflow", "instanceId": "1234", "type": "terminate"}'
+  -d '{"wrokflowType": "OrderProcessingWorkflow", "instanceId": "1234", "type": "terminate", "daprAppId": "call-workflow-order-processor"}'
 ```

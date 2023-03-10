@@ -39,8 +39,6 @@ app.post('/trigger', async (req, res) => {
                 throw "Failed to start workflow.";
             }
             console.log("Successfully start workflow " + instanceId);
-            console.log(response.json());
-            console.log(response.text());
             break;
         case "terminate":
             response = await fetch(`${workflowurl}/${wrokflowType}/${instanceId}/terminate`, {
@@ -53,8 +51,6 @@ app.post('/trigger', async (req, res) => {
                 throw "Failed to stop workflow.";
             }
             console.log("Successfully stop workflow " + instanceId);
-            console.log(response.json());
-            console.log(response.text());
             break;
         case "status":
             response = await fetch(`${workflowurl}/${wrokflowType}/${instanceId}`, {
@@ -67,16 +63,15 @@ app.post('/trigger', async (req, res) => {
                 throw "Failed to get workflow status.";
             }
             console.log("Successfully get workflow " + instanceId);
-            console.log(response.json());
-            console.log(response.text());
             break;
         default:
             console.log("Not support call type " + type);
             break;
     }
     console.log(response);
-    console.log(response);
-    res.status(200).send(response.json());
+    let resultJson = await response.json();
+    console.log(resultJson);
+    res.status(200).send(resultJson);
 })
 
 app.listen(port, () => console.log(`Node App listening on port ${port}!`));

@@ -5,6 +5,6 @@ metadata:
 spec:
   type: workflow.OrderProcessingWorkflow
   version: v1.0-alpha1
-  # metadata:
-  # - name: <NAME>
-  #   value: <VALUE>
+  metadata:
+  - name: actorStateStore  # Optional. default: false
+    value : true

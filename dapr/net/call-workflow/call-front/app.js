@@ -37,7 +37,8 @@ app.post('/trigger', async (req, res) => {
                     }
                 });
                 if (!response.ok) {
-                    throw "Failed to start workflow.";
+                    console.log("Failed to start workflow.");
+                    break;
                 }
                 console.log("Successfully start workflow " + instanceId);
                 break;
@@ -49,7 +50,8 @@ app.post('/trigger', async (req, res) => {
                     }
                 });
                 if (!response.ok) {
-                    throw "Failed to stop workflow.";
+                    console.log("Failed to stop workflow.");
+                    break;
                 }
                 console.log("Successfully stop workflow " + instanceId);
                 break;
@@ -61,7 +63,8 @@ app.post('/trigger', async (req, res) => {
                     }
                 });
                 if (!response.ok) {
-                    throw "Failed to get workflow status.";
+                    console.log("Failed to get workflow status.");
+                    break;
                 }
                 console.log("Successfully get workflow " + instanceId);
                 break;
@@ -69,9 +72,17 @@ app.post('/trigger', async (req, res) => {
                 console.log("Not support call type " + type);
                 break;
         }
-        let resultJson = await response.json();
-        console.log(resultJson);
-        res.status(200).send(resultJson);
+        try {
+            let resultJson = await response.json();
+            console.log(resultJson);
+            res.status(200).send(resultJson);
+        } catch (e) {
+            try {
+                let resultText = await response.text();
+                console.log(resultText);
+                res.status(200).send(resultText);
+            }
+        }
     } catch (e) {
         console.error(e);
         res.status(500).send(e);

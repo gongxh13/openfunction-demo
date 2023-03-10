@@ -83,3 +83,10 @@ curl -i -X POST http://localhost:8080/trigger \
   -H "Content-Type: application/json" \
   -d '{"wrokflowType": "OrderProcessingWorkflow", "instanceId": "1234", "type": "status"}'
 ```
+
+### terminate a workflow instance
+```
+curl -i -X POST http://localhost:8080/trigger \
+  -H "Content-Type: application/json" \
+  -d '{"wrokflowType": "OrderProcessingWorkflow", "instanceId": "1234", "type": "terminate"}'
+```

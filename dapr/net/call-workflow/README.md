@@ -74,15 +74,12 @@ Make note of the "1234" in the commands below. This represents the unique identi
 ```
 curl -i -X POST http://localhost:8080/trigger \
   -H "Content-Type: application/json" \
-  -d '{"wrokflowType": "OrderProcessingWorkflow", "instanceId": "1234", \
-        "type": "start", \
-        "inputData" : {"Name": "Paperclips", "TotalCost": 99.95, "Quantity": 1}}'
+  -d '{"wrokflowType": "OrderProcessingWorkflow", "instanceId": "1234", "type": "start", "inputData" : {"Name": "Paperclips", "TotalCost": 99.95, "Quantity": 1}}'
 ```
 
 ### Next, send an HTTP request to get the status of the workflow that was started:
 ```
 curl -i -X POST http://localhost:8080/trigger \
   -H "Content-Type: application/json" \
-  -d '{"wrokflowType": "OrderProcessingWorkflow", "instanceId": "1234", \
-        "type": "status"}'
+  -d '{"wrokflowType": "OrderProcessingWorkflow", "instanceId": "1234", "type": "status"}'
 ```

@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
       - name: dapr-call-workflow-front
-        image: gongxh/dapr-call-workflow-front
+        image: gongxh/dapr-call-workflow-front@sha256:84c9f12a049a801b898c4b25e120d5ac7b6de481f6f2f558a00af7a57dca4663
         env:
         - name: APP_PORT
           value: "3000"

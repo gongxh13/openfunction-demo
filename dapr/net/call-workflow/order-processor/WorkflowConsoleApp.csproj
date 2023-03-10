@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Dapr.Workflow\Dapr.Workflow.csproj" />
+    <PackageReference Include="Dapr.AspNetCore" Version="1.10.0-rc02" />
+    <PackageReference Include="Dapr.Workflow" Version="1.10.0-rc02" />
   </ItemGroup>
 
   <PropertyGroup>

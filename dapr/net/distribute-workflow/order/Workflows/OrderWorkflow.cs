@@ -4,16 +4,23 @@ using DurableTask.Core.Exceptions;
 using OrderApp.Activities;
 using OrderApp.Models;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace OrderApp.Workflows
 {
     public class OrderWorkflow : Workflow<OrderPayload, OrderResult>
     {
         readonly ILogger logger;
-        readonly WorkflowEngineClient workflowEngineClient;
+        WorkflowEngineClient workflowEngineClient;
 
         public OrderWorkflow()
         {
+            this.logger = loggerFactory.CreateLogger<UpdateInventoryActivity>();
+            var builder = Host.CreateDefaultBuilder(args).ConfigureServices(services =>
+            {});
+            using var host = builder.Build();
+            this.workflowEngineClient = host.Services.GetRequiredService<WorkflowEngineClient>();
         }
 
         public OrderWorkflow(ILoggerFactory loggerFactory, WorkflowEngineClient workflowEngineClient)

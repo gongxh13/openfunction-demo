@@ -11,12 +11,10 @@ namespace OrderApp.Workflows
 {
     public class OrderWorkflow : Workflow<OrderPayload, OrderResult>
     {
-        ILogger logger;
         WorkflowEngineClient workflowEngineClient;
 
         public OrderWorkflow()
         {
-            this.logger = loggerFactory.CreateLogger<UpdateInventoryActivity>();
             var builder = Host.CreateDefaultBuilder().ConfigureServices(services =>
             {});
             using var host = builder.Build();
@@ -25,7 +23,6 @@ namespace OrderApp.Workflows
 
         public OrderWorkflow(ILoggerFactory loggerFactory, WorkflowEngineClient workflowEngineClient)
         {
-            this.logger = loggerFactory.CreateLogger<UpdateInventoryActivity>();
             this.workflowEngineClient = workflowEngineClient;
         }
 
@@ -49,10 +46,7 @@ namespace OrderApp.Workflows
                 name: "InventoryWorkflow",
                 instanceId: orderId,
                 input: order);
-            this.logger.LogInformation(
-                "Checking inventory for order '{orderId}' result is {result}",
-                orderId,
-                result);
+            Console.WriteLine("Checking inventory for order " + orderId + ", result is " + result);
             // If there is insufficient inventory, fail and let the user know 
             // if (!result.Success)
             // {

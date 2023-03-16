@@ -12,6 +12,10 @@ namespace OrderApp.Workflows
         readonly ILogger logger;
         readonly WorkflowEngineClient workflowEngineClient;
 
+        public OrderWorkflow()
+        {
+        }
+
         public OrderWorkflow(ILoggerFactory loggerFactory, WorkflowEngineClient workflowEngineClient)
         {
             this.logger = loggerFactory.CreateLogger<UpdateInventoryActivity>();

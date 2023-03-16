@@ -59,7 +59,7 @@ Thread.Sleep(TimeSpan.FromSeconds(1));
 
 // NOTE: WorkflowEngineClient will be replaced with a richer version of DaprClient
 //       in a subsequent SDK release. This is a temporary workaround.
-using WorkflowEngineClient workflowClient = host.Services.GetRequiredService<WorkflowEngineClient>();
+using var workflowClient = host.Services.GetRequiredService<WorkflowEngineClient>();
 
 var orderInfo = new OrderPayload("Cars", 99, 1);
 string result = await workflowClient.ScheduleNewWorkflowAsync(

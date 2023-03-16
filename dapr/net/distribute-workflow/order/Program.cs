@@ -45,7 +45,7 @@ Console.ResetColor();
 using var host = builder.Build();
 host.Start();
 
-using var daprClient = new DaprClientBuilder().Build();
+using var daprClient = new DaprClientBuilder().UseGrpcEndpoint("http://localhost:4001").Build();
 
 // Wait for the sidecar to become available
 while (!await daprClient.CheckHealthAsync())

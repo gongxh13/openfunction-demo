@@ -23,7 +23,7 @@ IMAGE_TAG=${IMAGE_REPOSITORY}${IAMGE_NAME}:${IMAGE_VERSION}
 ```
 ### Build
 ```shell
-docker build -t ${IMAGE_TAG} -f Dockerfile ./inventory/
+docker build -t ${IMAGE_TAG} -f ./inventory/Dockerfile ./inventory/
 docker push ${IMAGE_TAG}
 ```
 
@@ -37,7 +37,7 @@ IMAGE_TAG=${IMAGE_REPOSITORY}${IAMGE_NAME}:${IMAGE_VERSION}
 ```
 ### Build
 ```shell
-docker build -t ${IMAGE_TAG} -f Dockerfile ./order/
+docker build -t ${IMAGE_TAG} -f ./order/Dockerfile ./order/
 docker push ${IMAGE_TAG}
 ```
 
@@ -48,10 +48,4 @@ kubectl apply -f deploy-inventory.yaml
 ## Deploy order workflow pods
 ```
 kubectl apply -f deploy-order.yaml
-```
-
-## Note: dapr 1.10 version can not register workflow components by yaml self, so not need execute Below code. Default workflow component name is dapr.
-### Deploy workflow component
-```
-kubectl apply -f workflow.yaml
 ```

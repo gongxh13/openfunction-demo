@@ -11,13 +11,13 @@ namespace OrderApp.Workflows
 {
     public class OrderWorkflow : Workflow<OrderPayload, OrderResult>
     {
-        readonly ILogger logger;
+        ILogger logger;
         WorkflowEngineClient workflowEngineClient;
 
         public OrderWorkflow()
         {
             this.logger = loggerFactory.CreateLogger<UpdateInventoryActivity>();
-            var builder = Host.CreateDefaultBuilder(args).ConfigureServices(services =>
+            var builder = Host.CreateDefaultBuilder().ConfigureServices(services =>
             {});
             using var host = builder.Build();
             this.workflowEngineClient = host.Services.GetRequiredService<WorkflowEngineClient>();

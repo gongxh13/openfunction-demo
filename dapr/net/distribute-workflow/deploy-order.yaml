@@ -17,6 +17,8 @@ spec:
         dapr.io/enabled: "true"
         dapr.io/app-id: "dapr-distribute-workflow-order"
         dapr.io/enable-api-logging: "true"
+        dapr.io/app-protocol: "grpc"
+        dapr.io/app-port: "4001"
     spec:
       containers:
         - name: dapr-distribute-workflow-order

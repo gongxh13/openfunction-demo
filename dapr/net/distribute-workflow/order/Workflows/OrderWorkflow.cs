@@ -3,6 +3,7 @@ using Dapr.Client;
 using DurableTask.Core.Exceptions;
 using OrderApp.Activities;
 using OrderApp.Models;
+using Microsoft.Extensions.Logging;
 
 namespace OrderApp.Workflows
 {

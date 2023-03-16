@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: dapr-distribute-workflow-order
-          image: gongxh/dapr-distribute-workflow-order@sha256:2ee34c60fa338dfd97cb1fc16ee3f3b613dce375354242d342b562b2ec8a1e40
+          image: gongxh/dapr-distribute-workflow-order@sha256:19571f14f895e814464676b656bb2a956596bf57bfccaf189f369052c9fba100
           # env:
           #   - name: WORKFLOW_NAME
           #     value: "dapr-workflow"

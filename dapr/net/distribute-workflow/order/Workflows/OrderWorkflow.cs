@@ -35,7 +35,7 @@ namespace OrderApp.Workflows
             
             // call inventory workflow 
             string result = await workflowEngineClient.ScheduleNewWorkflowAsync(
-                name: nameof(InventoryWorkflow),
+                name: "InventoryWorkflow",
                 instanceId: orderId,
                 input: order);
             this.logger.LogInformation(

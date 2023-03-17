@@ -59,7 +59,6 @@ WorkflowEngineClient workflowClient = host.Services.GetRequiredService<WorkflowE
 var orderInfo = new OrderPayload("Cars", 99, 1);
 string result = await workflowClient.ScheduleNewWorkflowAsync(
     name: nameof(OrderWorkflow),
-    instanceId: "12345678",
     input: orderInfo);
 Console.WriteLine("111 " + result);
 // Start the input loop

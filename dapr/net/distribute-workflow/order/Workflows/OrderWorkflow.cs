@@ -1,31 +1,13 @@
 ﻿using Dapr.Workflow;
-using Dapr.Client;
 using DurableTask.Core.Exceptions;
 using OrderApp.Activities;
 using OrderApp.Models;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace OrderApp.Workflows
 {
     public class OrderWorkflow : Workflow<OrderPayload, OrderResult>
     {
-        WorkflowEngineClient workflowEngineClient;
-
-        public OrderWorkflow()
-        {
-            var builder = Host.CreateDefaultBuilder().ConfigureServices(services =>
-            {});
-            using var host = builder.Build();
-            this.workflowEngineClient = host.Services.GetRequiredService<WorkflowEngineClient>();
-        }
-
-        public OrderWorkflow(ILoggerFactory loggerFactory, WorkflowEngineClient workflowEngineClient)
-        {
-            this.workflowEngineClient = workflowEngineClient;
-        }
-
         public override async Task<OrderResult> RunAsync(WorkflowContext context, OrderPayload order)
         {
             string orderId = context.InstanceId;
@@ -42,20 +24,18 @@ namespace OrderApp.Workflows
             //     new InventoryRequest(RequestId: orderId, order.Name, order.Quantity));
             
             // call inventory workflow 
-            string result = await workflowEngineClient.ScheduleNewWorkflowAsync(
-                name: "InventoryWorkflow",
-                instanceId: orderId,
-                input: order);
-            Console.WriteLine("Checking inventory for order " + orderId + ", result is " + result);
+            InventoryResult result = await context.CallChildWorkflowAsync<InventoryResult>(
+                "InventoryWorkflow",
+                order);
             // If there is insufficient inventory, fail and let the user know 
-            // if (!result.Success)
-            // {
-            //     // End the workflow here since we don't have sufficient inventory
-            //     await context.CallActivityAsync(
-            //         nameof(NotifyActivity),
-            //         new Notification($"Insufficient inventory for {order.Name}"));
-            //     return new OrderResult(Processed: false);
-            // }
+            if (!result.Success)
+            {
+                // End the workflow here since we don't have sufficient inventory
+                await context.CallActivityAsync(
+                    nameof(NotifyActivity),
+                    new Notification($"Insufficient inventory for {order.Name}"));
+                return new OrderResult(Processed: false);
+            }
 
             // There is enough inventory available so the user can purchase the item(s). Process their payment
             await context.CallActivityAsync(

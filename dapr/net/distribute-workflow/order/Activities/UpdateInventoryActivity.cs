@@ -25,10 +25,6 @@ namespace OrderApp.Activities
                 req.RequestId,
                 req.Amount,
                 req.ItemName);
-
-            // Simulate slow processing
-            await Task.Delay(TimeSpan.FromSeconds(5));
-
             // Determine if there are enough Items for purchase
             InventoryItem item = await client.GetStateAsync<InventoryItem>(
                 storeName,

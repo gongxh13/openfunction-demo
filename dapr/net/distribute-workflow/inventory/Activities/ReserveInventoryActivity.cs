@@ -46,9 +46,6 @@ namespace InventoryApp.Activities
             // See if there're enough items to purchase
             if (item.Quantity >= req.Quantity)
             {
-                // Simulate slow processing
-                await Task.Delay(TimeSpan.FromSeconds(2));
-
                 return new InventoryResult(true, item);
             }
 

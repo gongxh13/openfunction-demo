@@ -23,9 +23,6 @@ namespace OrderApp.Activities
                 req.ItemName,
                 req.Currency);
 
-            // Simulate slow processing
-            await Task.Delay(TimeSpan.FromSeconds(7));
-
             this.logger.LogInformation(
                 "Payment for request ID '{requestId}' processed successfully",
                 req.RequestId);

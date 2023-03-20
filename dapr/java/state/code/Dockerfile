@@ -16,4 +16,4 @@ COPY --from=builder target/state-1.0-SNAPSHOT.jar state-1.0-SNAPSHOT.jar
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "state-1.0-SNAPSHOT.jar", "com.example.StateApp"]
+CMD ["java", "-jar", "state-1.0-SNAPSHOT.jar"]

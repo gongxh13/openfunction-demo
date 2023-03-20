@@ -21,7 +21,7 @@ func main() {
 
     fmt.Println("First try lock result:%s", resp.Success)
 
-    resp, err := client.TryLockAlpha1(context.Background(), "lockstore", &dapr.LockRequest{
+    resp, err = client.TryLockAlpha1(context.Background(), "lockstore", &dapr.LockRequest{
 		LockOwner:         "random_id_abc123",
 		ResourceID:      "my_file_name",
 		ExpiryInSeconds: 60,
@@ -29,14 +29,14 @@ func main() {
 
     fmt.Println("Second try lock result:%s", resp.Success)
 
-    resp1, err := client.UnlockAlpha1(context.Background(), "lockstore", &dapr.UnlockRequest{
+    resp1, err1 := client.UnlockAlpha1(context.Background(), "lockstore", &dapr.UnlockRequest{
 		LockOwner:    "random_id_abc123",
 		ResourceID: "my_file_name",
 	})
 
     fmt.Println("Release lock result:%s", resp1.Success)
 
-    resp, err := client.TryLockAlpha1(context.Background(), "lockstore", &dapr.LockRequest{
+    resp, err = client.TryLockAlpha1(context.Background(), "lockstore", &dapr.LockRequest{
 		LockOwner:         "random_id_abc123",
 		ResourceID:      "my_file_name",
 		ExpiryInSeconds: 60,

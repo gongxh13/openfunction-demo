@@ -30,7 +30,7 @@ func main() {
 	}
 	log.Println("Result after get:", string(result.Value))
 
-	if err = client.DeleteState(ctx, STATE_STORE_NAME, "order_1"); err != nil {
+	if err = client.DeleteState(ctx, STATE_STORE_NAME, "order_1", nil); err != nil {
         panic(err)
     }
 }

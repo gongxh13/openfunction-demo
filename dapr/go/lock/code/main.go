@@ -29,7 +29,7 @@ func main() {
 
     fmt.Println("Second try lock result:%s", esp.Success)
 
-    resp, err := client.UnlockAlpha1(context.Background(), "lockstore", &UnlockRequest{
+    resp, err := client.UnlockAlpha1(context.Background(), "lockstore", &dapr.UnlockRequest{
 		LockOwner:    "random_id_abc123",
 		ResourceID: "my_file_name",
 	})

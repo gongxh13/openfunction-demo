@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dapr-go-state
+  labels:
+    app: dapr-go-state
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dapr-go-state
+  template:
+    metadata:
+      labels:
+        app: dapr-go-state
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "dapr-go-state"
+        dapr.io/enable-api-logging: "true"
+    spec:
+      containers:
+        - name: dapr-go-state
+          image: gongxh/dapr-go-state@sha256:689aaa7ddc3ccce884ecc5e1dd8c5414b6a9c1a9c1e547373eac73a328c1c4a2
+          # env:
+          #   - name: WORKFLOW_NAME
+          #     value: "dapr-workflow"

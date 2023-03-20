@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: dapr-go-lock
-          image: gongxh/dapr-go-lock@
+          image: gongxh/dapr-go-lock@sha256:689aaa7ddc3ccce884ecc5e1dd8c5414b6a9c1a9c1e547373eac73a328c1c4a2
           # env:
           #   - name: WORKFLOW_NAME
           #     value: "dapr-workflow"

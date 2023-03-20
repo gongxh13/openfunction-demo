@@ -4,6 +4,7 @@ metadata:
   name: lockstore
 spec:
   type: lock.redis
+  version: 1
   metadata:
   # These settings will work out of the box if you use `helm install
   # bitnami/redis`.  If you have your own setup, replace

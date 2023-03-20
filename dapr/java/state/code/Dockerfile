@@ -1,5 +1,5 @@
 # First stage: complete build environment
-FROM maven:3.5.0-jdk-11-alpine AS builder
+FROM maven:3.5.0-jdk-8-alpine AS builder
 
 # add pom.xml and source code
 ADD ./pom.xml pom.xml
@@ -9,7 +9,7 @@ ADD ./src src/
 RUN mvn clean package
 
 # Second stage: minimal runtime environment
-From openjdk:11-jre-alpine
+From openjdk:8-jre-alpine
 
 # copy jar from the first stage
 COPY --from=builder target/state-1.0-SNAPSHOT.jar state-1.0-SNAPSHOT.jar

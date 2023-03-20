@@ -27,7 +27,7 @@ func main() {
 		ExpiryInSeconds: 60,
 	})
 
-    fmt.Println("Second try lock result:%s", esp.Success)
+    fmt.Println("Second try lock result:%s", resp.Success)
 
     resp, err := client.UnlockAlpha1(context.Background(), "lockstore", &dapr.UnlockRequest{
 		LockOwner:    "random_id_abc123",

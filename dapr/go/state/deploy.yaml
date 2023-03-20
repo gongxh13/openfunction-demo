@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: dapr-go-state
-          image: gongxh/dapr-go-state@sha256:689aaa7ddc3ccce884ecc5e1dd8c5414b6a9c1a9c1e547373eac73a328c1c4a2
+          image: gongxh/dapr-go-state@sha256:ca8939c3d0257431adf485fac6554ecb6e3fb84c60a52cd966352d77471d3862
           # env:
           #   - name: WORKFLOW_NAME
           #     value: "dapr-workflow"

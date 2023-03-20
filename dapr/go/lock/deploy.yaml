@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dapr-go-lock
+  labels:
+    app: dapr-go-lock
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dapr-go-lock
+  template:
+    metadata:
+      labels:
+        app: dapr-go-lock
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "dapr-go-lock"
+        dapr.io/enable-api-logging: "true"
+    spec:
+      containers:
+        - name: dapr-go-lock
+          image: gongxh/dapr-go-lock@sha256:c9242994eb76eaa333888f6cd140c7bf9a636bbaf40ffc837b0d22db31fda233
+          # env:
+          #   - name: WORKFLOW_NAME
+          #     value: "dapr-workflow"

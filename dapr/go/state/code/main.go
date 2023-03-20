@@ -20,7 +20,7 @@ func main() {
     }
     defer client.Close()
 
-	err = client.SaveState(ctx, STATE_STORE_NAME, "order_1", []byte(strconv.Itoa(orderId)), nil)
+	err = client.SaveState(ctx, STATE_STORE_NAME, "order_1", []byte(strconv.Itoa(1)), nil)
 	if err != nil {
 		panic(err)
 	}

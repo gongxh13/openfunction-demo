@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: dapr-java-state
-          image: gongxh/dapr-java-state@sha256:c2b5e14b8c917a99d9039129989955be855a9b23633807474a341283aa763274
+          image: gongxh/dapr-java-state@sha256:8eaeb3a5d34f77ba23af29ad4c97ba25623f47ded085a70dfac168cc1ca3561d
           # env:
           #   - name: WORKFLOW_NAME
           #     value: "dapr-workflow"

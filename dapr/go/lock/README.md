@@ -14,7 +14,7 @@ IMAGE_VERSION=latest
 IMAGE_TAG=${IMAGE_REPOSITORY}${IAMGE_NAME}:${IMAGE_VERSION}
 ```
 ```shell
-docker build -t ${IMAGE_TAG} -f Dockerfile ./code/
+docker build -t ${IMAGE_TAG} -f ./code/Dockerfile ./code/
 docker push ${IMAGE_TAG}
 ```
 

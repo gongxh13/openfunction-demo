@@ -35,7 +35,7 @@ func main() {
 		ResourceID: "my_file_name",
 	})
 
-    fmt.Println("Release lock result:%s, error is %s", resp1.Status)
+    fmt.Println("Release lock result:%s, error is %s", resp1.Status, err1)
 
     resp, err = client.TryLockAlpha1(ctx, "lockstore", &dapr.LockRequest{
 		LockOwner:         "random_id_abc123",

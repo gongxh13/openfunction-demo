@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dapr-go-pubsub-pub
+  labels:
+    app: dapr-go-pubsub-pub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dapr-go-pubsub-pub
+  template:
+    metadata:
+      labels:
+        app: dapr-go-pubsub-pub
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "dapr-go-pubsub-pub"
+        dapr.io/enable-api-logging: "true"
+    spec:
+      containers:
+        - name: dapr-go-pubsub-pub
+          image: gongxh/dapr-go-pubsub-pub@sha256:d3118281ab468767b8e11aa48b5eeb5cf0cac1b81d01011b28d908a9902eff0b
+          # env:
+          #   - name: WORKFLOW_NAME
+          #     value: "dapr-workflow"

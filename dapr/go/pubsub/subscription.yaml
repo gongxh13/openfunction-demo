@@ -7,6 +7,6 @@ spec:
   routes: 
     default: /checkout
   pubsubname: pubsub-redis
-# scopes:
-# - orderprocessing
+scopes:
+- dapr-go-pubsub-sub
 # - checkout

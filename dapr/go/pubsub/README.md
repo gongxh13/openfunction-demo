@@ -31,6 +31,8 @@ docker push ${IMAGE_TAG}
 ## Deployment
 ### Deploy pubsub component
 Use `kubectl apply -f deploy-redis.yaml` deploy a pubsub-redis name component.
+### Deploy subscriber
+`kubectl apply -f subscription.yaml`
 ### Deploy sub
 `kubectl apply -f deploy-sub.yaml`
 ### Deploy pub

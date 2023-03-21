@@ -16,9 +16,10 @@ spec:
   #   value: "myGroup"
   # - name: enableTLS
   #   value: "false"
-# scopes:
-# - dapr-go-pubsub-sub
-# - dapr-go-pubsub-pub
+scopes:
+- dapr-go-pubsub-sub
+- dapr-go-pubsub-sub1
+- dapr-go-pubsub-pub
 # - checkout
 auth:
   secretStore: kubernetes

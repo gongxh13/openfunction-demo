@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: dapr-go-pubsub-sub
-          image: gongxh/dapr-go-pubsub-sub@sha256:36f8ffbdbe58367e3d228f9826718bb6419a649828749e5ec1d517b9cfce6fc2
+          image: gongxh/dapr-go-pubsub-sub@sha256:d3118281ab468767b8e11aa48b5eeb5cf0cac1b81d01011b28d908a9902eff0b
           # env:
           #   - name: WORKFLOW_NAME
           #     value: "dapr-workflow"

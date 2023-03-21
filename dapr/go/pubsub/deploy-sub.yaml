@@ -16,6 +16,7 @@ spec:
       annotations:
         dapr.io/enabled: "true"
         dapr.io/app-id: "dapr-go-pubsub-sub"
+        dapr.io/app-port: "6002"
         dapr.io/enable-api-logging: "true"
     spec:
       containers:

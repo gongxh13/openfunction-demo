@@ -9,4 +9,4 @@ spec:
   pubsubname: pubsub-redis
 scopes:
 - dapr-go-pubsub-sub
-# - checkout
+- dapr-go-pubsub-pub

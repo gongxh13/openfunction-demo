@@ -7,6 +7,6 @@ spec:
   routes: 
     default: /checkout
   pubsubname: pubsub-redis
-scopes:
-- dapr-go-pubsub-sub
-- dapr-go-pubsub-pub
+# scopes:
+# - dapr-go-pubsub-sub
+# - dapr-go-pubsub-pub

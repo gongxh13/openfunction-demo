@@ -18,6 +18,7 @@ spec:
   #   value: "false"
 scopes:
 - dapr-go-pubsub-sub
+- dapr-go-pubsub-pub
 # - checkout
 auth:
   secretStore: kubernetes

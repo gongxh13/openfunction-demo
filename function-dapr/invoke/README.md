@@ -32,9 +32,9 @@ docker push ${IMAGE_TAG}
 
 # Deployment
 ## Deployment from function
-`kubedtl apply -f deploy-from.yaml`
+`kubectl apply -f deploy-from.yaml`
 ## Deployment to function
-`kubedtl apply -f deploy-to.yaml`
+`kubectl apply -f deploy-to.yaml`
 
 # Access function
 ## You can observe the process of a function with the following command:

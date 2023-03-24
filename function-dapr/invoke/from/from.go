@@ -12,7 +12,7 @@ import (
 func FromFunc(ctx ofctx.Context, in []byte) (ofctx.Out, error) {
 	log.Printf("event - Data: %s", in)
 	ctxb := context.Background()
-	client, err := dapr.NewClientWithAddress("function-dapr-invoke-from-default-dapr.default.svc.cluster.local:50001")
+	client, err := dapr.NewClient()
 	if err != nil {
 		panic(err)
 	}

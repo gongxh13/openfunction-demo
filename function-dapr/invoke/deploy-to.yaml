@@ -1,0 +1,19 @@
+apiVersion: core.openfunction.io/v1beta1
+kind: Function
+metadata:
+  name: function-dapr-invoke-to
+spec:
+  version: "v2.0.0"
+  image: "gongxh/function-dapr-invoke-to@sha256:9acc278d4ff3fc840ef24e765fa7e288c3ba203cbb3f766d7ea3214a1984604f"
+  imageCredentials:
+    name: push-secret
+  port: 8080 # default to 8080
+  serving:
+    annotations:
+      openfunction.io/enable-dapr: "true"
+      openfunction.io/dapr-service-mode: "standalone"
+    template:
+      containers:
+        - name: function # DO NOT change this
+          imagePullPolicy: IfNotPresent
+    runtime: "knative"

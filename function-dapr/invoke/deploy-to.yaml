@@ -4,7 +4,7 @@ metadata:
   name: function-dapr-invoke-to
 spec:
   version: "v2.0.0"
-  image: "gongxh/function-dapr-invoke-to@sha256:9acc278d4ff3fc840ef24e765fa7e288c3ba203cbb3f766d7ea3214a1984604f"
+  image: "gongxh/function-dapr-invoke-to@sha256:41f02937d78c6e5206e93148eb509345fadf401e192af9473dbc0f187b7e480b"
   imageCredentials:
     name: push-secret
   port: 8080 # default to 8080

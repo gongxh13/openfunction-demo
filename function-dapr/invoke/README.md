@@ -12,7 +12,7 @@ IMAGE_TAG=${IMAGE_REPOSITORY}${IAMGE_NAME}:${IMAGE_VERSION}
 ```
 ### Build
 ```
-pack build ${IMAGE_TAG} --trust-builder --path ./from/ --builder openfunction/builder-go:v2.4.0 --env FUNC_NAME="function-dapr-invoke-from"  --env FUNC_CLEAR_SOURCE=true
+pack build ${IMAGE_TAG} --trust-builder --path ./from/ --builder openfunction/builder-go:v2.4.0 --env FUNC_NAME="FromFunc"  --env FUNC_CLEAR_SOURCE=true
 docker push ${IMAGE_TAG}
 ```
 
@@ -26,7 +26,7 @@ IMAGE_TAG=${IMAGE_REPOSITORY}${IAMGE_NAME}:${IMAGE_VERSION}
 ```
 ### Build
 ```
-pack build ${IMAGE_TAG} --trust-builder --path ./to/ --builder openfunction/builder-go:v2.4.0 --env FUNC_NAME="function-dapr-invoke-to"  --env FUNC_CLEAR_SOURCE=true
+pack build ${IMAGE_TAG} --trust-builder --path ./to/ --builder openfunction/builder-go:v2.4.0 --env FUNC_NAME="ToFunc"  --env FUNC_CLEAR_SOURCE=true
 docker push ${IMAGE_TAG}
 ```
 

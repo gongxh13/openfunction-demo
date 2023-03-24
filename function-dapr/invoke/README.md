@@ -47,7 +47,7 @@ kubectl run curl --rm --image=radial/busyboxplus:curl -i --tty
 ```
 ## Access the function via URL
 ```
-curl http://function-dapr-invoke-from.default.svc.cluster.local/trigger/
+curl http://function-dapr-invoke-from.default.svc.cluster.local/
 ```
 
 ## See from function log

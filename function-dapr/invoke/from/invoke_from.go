@@ -1,4 +1,4 @@
-package main
+package invoke-from
 
 import (
 	"context"

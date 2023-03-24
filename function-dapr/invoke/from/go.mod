@@ -1,4 +1,4 @@
-module example.com/invoke-from
+module example.com/invoke_from
 
 go 1.17
 

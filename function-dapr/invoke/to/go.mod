@@ -1,4 +1,4 @@
-module example.com/invoke-to
+module example.com/invoke_to
 
 go 1.17
 

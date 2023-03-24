@@ -22,7 +22,7 @@ func init() {
 	}
 }
 
-func Entry(ctx ofctx.Context, in []byte) (ofctx.Out, error) {
+func ToFunc(ctx ofctx.Context, in []byte) (ofctx.Out, error) {
 	log.Printf("event - Data: %s", in)
 	return ctx.ReturnOnSuccess(), nil
 }

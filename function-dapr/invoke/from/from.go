@@ -9,7 +9,7 @@ import (
 	dapr "github.com/dapr/go-sdk/client"
 )
 
-func Entry(ctx ofctx.Context, in []byte) (ofctx.Out, error) {
+func FromFunc(ctx ofctx.Context, in []byte) (ofctx.Out, error) {
 	log.Printf("event - Data: %s", in)
 	ctxb := context.Background()
 	client, err := dapr.NewClient()

@@ -11,7 +11,7 @@ spec:
   serving:
     annotations:
       openfunction.io/enable-dapr: "true"
-      openfunction.io/dapr-service-mode: "standalone"
+      openfunction.io/dapr-service-mode: "sidecar"
     template:
       containers:
         - name: function # DO NOT change this
